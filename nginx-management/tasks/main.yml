@@ -1,7 +1,7 @@
 ---
 - name: Ensure Nginx is installed
   ansible.builtin.apt:
-    name: "nginx=1.18.0-6ubuntu14.5"
+    name: "nginx"
     state: present
   when: ansible_os_family in 'Debian'
   notify: restart nginx
