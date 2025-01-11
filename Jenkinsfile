@@ -17,7 +17,7 @@ pipeline {
         }
         stage('checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/amaanraaz/nginx-ansible-role.git'
+                git branch: 'main', url: 'https://github.com/amaanraaz/nginx-ansible_role.git'
             }
         }
         stage('Run GitLeaks') {
