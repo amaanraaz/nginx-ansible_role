@@ -24,7 +24,7 @@
 
 - name: Template dynamic HTML file
   ansible.builtin.template:
-    src: aman.html.j2
+    src: website.html.j2
     dest: /var/www/html/index.html
     owner: www-data
     group: www-data
