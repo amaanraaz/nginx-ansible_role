@@ -1,0 +1,23 @@
+user {{ nginx_user }};
+worker_processes {{ nginx_worker_processes }};
+
+events {
+    worker_connections {{ nginx_worker_connections }};
+}
+
+http {
+    server {
+        listen 80;
+        server_name localhost;
+
+        location / {
+            root /var/www/html;
+            index index.html index.nginx-debian.html;
+        }
+
+        location /aman {
+            alias /var/www/html/aman.html;  # Use alias to point directly to aman.html
+            default_type text/html;          # Ensure the response type is HTML
+        }
+    }
+}

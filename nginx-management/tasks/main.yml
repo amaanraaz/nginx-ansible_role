@@ -1,0 +1,31 @@
+---
+- name: Ensure Nginx is installed
+  ansible.builtin.apt:
+    name: "nginx=1.18.0-6ubuntu14.5"
+    state: present
+  when: ansible_os_family in 'Debian'
+  notify: restart nginx
+
+- name: Ensure Nginx is installed
+  ansible.builtin.yum:
+    name: "nginx=1.18.0-6ubuntu14.5"
+    state: present
+  when: ansible_os_family in 'Redhat'
+  notify: restart nginx
+
+- name: Template Nginx configuration file
+  ansible.builtin.template:
+    src: "{{ nginx_config_template }}"
+    dest: "/etc/nginx/nginx.conf"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart nginx
+
+- name: Template dynamic HTML file
+  ansible.builtin.template:
+    src: aman.html.j2
+    dest: /var/www/html/aman.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
